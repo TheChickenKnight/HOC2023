@@ -1,12 +1,17 @@
 const TRYMPE_SPEED = 1;
+const TRYMPE_HANDLING = 0.1;
+const TRYMPE_RADIUS = 20;
+const TRYMPE_ANGLE = 30;
 
 class Trympe {
-    constructor(x, y, genome) {
+    constructor(x, y, genome, color) {
         this.pos = {
             x,
             y
         };
-        this.color = [255, 255, 255];
+        this.inAction = true;
+
+        this.color = color;
 
         this.vec = {
             dir: createVector(0, 1).rotate(random(2 * PI)),
@@ -34,7 +39,11 @@ class Trympe {
             Math.sin(PI*this.chrono*25),
             this.chrono += 0.01,
             Math.random(),
-        ]
+        ];
+    }
+
+    vision() {
+
     }
 
     show() {
@@ -58,4 +67,3 @@ class Trympe {
         point(this.pos.x, this.pos.y);
     }
 }
-

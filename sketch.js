@@ -1,4 +1,5 @@
 const FPS = 100000000;
+const POP_SIZE = 100;
 const DIM = {
   W: 120,
   L: 67
@@ -6,15 +7,20 @@ const DIM = {
 let grid = [];
 for (let i = 0; i < DIM.L; i++)
   grid.push(new Array(DIM.W));
-let trimp;
+let trimps = [];
+
 
 function setup() {
   createCanvas(DIM.W, DIM.L);
   frameRate(FPS);
-  trimp = new Trympe(50, 50, {});
+  init();
 }
  
  function draw() {
   background(0);
   trimp.show();
+}
+
+function init() {
+
 }
