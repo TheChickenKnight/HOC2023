@@ -1,12 +1,12 @@
-const TRYMPE_SPEED = 10;
+const TRYMPE_SPEED = 1;
 
 class Trympe {
     constructor(x, y, genome) {
-        console.log(neataptic);
         this.pos = {
             x,
             y
         };
+        this.color = [255, 255, 255];
 
         this.vec = {
             dir: createVector(0, 1).rotate(random(2 * PI)),
@@ -17,15 +17,29 @@ class Trympe {
         this.brain = genome;
         this.brain.score = 0;
 
-        this.osc = 0;
         this.chrono = 0;
         
         grid[y][x] = this;
     }
 
+    inputs() {
+
+
+
+        return [
+            this.pos.x / DIM.W,
+            this.pos.y / DIM.L,
+            (DIM.W - this.pos.x) / DIM.W, 
+            (DIM.L - this.pos.y) / DIM.L,
+            Math.sin(PI*this.chrono*25),
+            this.chrono += 0.01,
+            Math.random(),
+        ]
+    }
+
     show() {
         this.vec.perp = createVector(this.vec.dir.y, -this.vec.dir.x);
-        stroke(255);
+        stroke(this.color);
         triangle(
             this.pos.x + this.vec.dir.x,
             this.pos.y + this.vec.dir.y,

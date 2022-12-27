@@ -5,7 +5,7 @@ const DIM = {
 }
 let grid = [];
 for (let i = 0; i < DIM.L; i++)
-  grid += new Array(DIM.W);
+  grid.push(new Array(DIM.W));
 let trimp;
 
 function setup() {
