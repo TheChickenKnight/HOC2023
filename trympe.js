@@ -43,7 +43,16 @@ class Trympe {
     }
 
     vision() {
-
+        let visionPoints = [];
+        for (let i = 0; i < grid.length; i++)
+            for (let j = 0; j < grid[0].length; j++) {
+                let point = createVector(j - this.pos.x, i - this.pos.y);
+                let center = this.vec.dir.copy();
+                center.setMag(TRYMPE_RADIUS);
+                //to find if a point is within the limited vision of a trympe, the vector of the trympe as the origin to the point has to have a lesser magnitude than the vector of the trympe as the origin with a magnitude of the trympe's max vision length and the angle of the trimps direction vector. The point's vector also has to have a lesser angle between it and said vector than half of the trympe's vision width.
+                if (point.mag() <= center.mag() && Math.atan2(center.y - point.y, center.x - point.x) <= TRYMPE_ANGLE * PI / 360)
+                    visionPoints.push(grid[i][j]);
+            }
     }
 
     show() {

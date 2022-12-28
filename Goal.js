@@ -6,6 +6,7 @@ const GOAL_BONUS = 100;
 class Goal extends Tile {
     constructor(x, y) {
         super(x, y);
+        this.type = "goal";
     }
 
     interact() {

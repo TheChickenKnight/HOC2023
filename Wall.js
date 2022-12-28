@@ -4,6 +4,7 @@
 
 class Wall {
     constructor() {
-        
+        super(x, y);
+        this.type = "wall";
     }
 }

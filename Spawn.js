@@ -4,7 +4,8 @@
 // Will error if not enough Spawns compared to POP_SIZE
 
 class Spawn {
-    constructor() {
-        
+    constructor(x, y) {
+        super(x, y);
+        this.type = "spawn";
     }
 }
