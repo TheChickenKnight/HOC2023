@@ -3,7 +3,7 @@
 // Will create a  Trympe on pixel at startup, and will dissappear after the Trympe is spawned.
 // Will error if not enough Spawns compared to POP_SIZE
 
-class Spawn {
+class Spawn extends Tile {
     constructor(x, y) {
         super(x, y);
         this.type = "spawn";
