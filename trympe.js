@@ -24,24 +24,27 @@ class Trympe {
 
         this.chrono = 0;
         
-        grid[y][x] = this;
+        grid[y][x].interact();
     }
 
     act() {
-        let outputs = this.brain.activate(this.inputs);
-        /*
-        * Let's talk outputs:
-        * 1: move forward or not? (1 fixed speed)
-        * 2: turn or not? (1 fixed speed)
-        * 3: turn left or right? (yeah 1 fixed speed)
-        * 4: no. That's it.
-        *  Yeah that's really it.
-        * No, I dont feel like coding it in rn.
-        * shut up trey
-        * hold on i forgot about one
-        * 5(really 4): resets chronometer!!!
-        * ahahaha
-        */
+        let outputs = this.brain.activate(this.inputs).map(val => Math.round(val));
+        if (outputs[0] >= 1)
+            this.vec.vel.setMag(TRYMPE_SPEED);
+        if (outputs[1] >= 1) {
+            this.vec.dir.rotate((outputs[2] <= 0 ? -1 : 1) * TRYMPE_HANDLING);
+            this.vec.vel.setHeading(this.vec.dir.heading());
+        }
+        if (outputs[3] >= 1)
+            this.chrono = 0;
+        //Forward movement
+        let target = grid[Math.round(this.pos.y + this.vec.vel.y)][Math.round(this.pos.x + this.vec.vel.x)];
+        if (target.inhab == null && target.type !== "wall") {
+            grid[this.pos.y][this.pos.x].inhab = null;
+            this.pos.x = Math.round(this.pos.x + this.vec.vel.x);
+            this.pos.y = Math.round(this.pos.y + this.vec.vel.y);
+            grid[this.pos.y][this.pos.x].interact();
+        }
     }
 
     get inputs() {
@@ -60,6 +63,7 @@ class Trympe {
     }
 
     get vision() {
+        let count = 0;
         let vP = {
             goal: 0,
             lava: 0,
@@ -73,10 +77,12 @@ class Trympe {
                 let center = this.vec.dir.copy();
                 center.setMag(TRYMPE_RADIUS);
                 //to find if a point is within the limited vision of a trympe, the vector of the trympe as the origin to the point has to have a lesser magnitude than the vector of the trympe as the origin with a magnitude of the trympe's max vision length and the angle of the trimps direction vector. The point's vector also has to have a lesser angle between it and said vector than half of the trympe's vision width.
-                if (point.mag() <= center.mag() && Math.atan2(center.y - point.y, center.x - point.x) <= TRYMPE_ANGLE * PI / 360)
+                if (point.mag() <= center.mag() && Math.atan2(center.y - point.y, center.x - point.x) <= TRYMPE_ANGLE * PI / 360) {
                     vP[grid[i][j].type]++;
+                    count++;
+                }
             }
-        return Object.values(vP);
+        return Object.values(vP).map(val => val/count);
     }
 
     show() {
