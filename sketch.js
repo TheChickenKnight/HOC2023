@@ -51,17 +51,25 @@ function draw() {
 function init() {
   // Phases:
 
-  // Drawing Phase:
-  //  Before the trympes spawn in, to allow a chance to draw in different tiles.
-  //  I'm assuming some kind of paint tool with a grid on the side of buttons for the tiles
-  //  There will be a requirement for the right amount of spawn tiles and some goal tiles.
-  //  There will also be a confirmation button to start the phase. Maybe more settings.
+  /* Drawing Phase:
+  *   Before the trympes spawn in, to allow a chance to draw in different tiles.
+  *   I'm assuming some kind of paint tool with a grid on the side of buttons for the tiles
+  *   There will be a requirement for the right amount of spawn tiles and some goal tiles.
+  *   There will also be a confirmation button to start the phase. Maybe more settings.
+  */
 
-  // Training phase:
-  //  This is when the actual genetic algorithm comes into play
-  //  The goal of the trympes will be to get from spawn to goal.
-  //  I have not decided whether to spawn all trympes of a generation at once, or seperately.
-  //    Separately won't be that slow, as less calcuation per trympe but still would be slower.
-  //  here a link to a project with a similar genetic algorithm we can steal:
-  //    https://github.com/wagenaartje/agario-ai 
+  /* Training phase:
+  *   This is when the actual genetic algorithm comes into play
+  *   The goal of the trympes will be to get from spawn to goal.
+  *   I have not decided whether to spawn all trympes of a generation at once, or seperately.
+  *     Separately won't be that slow, as less calcuation per trympe but still would be slower.
+  *   Here's a link to a project with a similar genetic algorithm we can steal:
+  *     https://github.com/wagenaartje/agario-ai 
+  */
+
+  /* Completion phase:
+  *    There probably won't be a timed beginning of this phase. Perhaps a button in training phase.
+  *    This phase will take the best, maybe the top n, of the Trympes and showcase them
+  *    I'll probably just have it on loop
+  */
 }
