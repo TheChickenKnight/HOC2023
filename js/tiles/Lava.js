@@ -10,6 +10,7 @@ class Lava {
         };
         this.inhab = null;
         this.type = "lava";
+        grid[y][x] = this;
     }
 
     interact() {
@@ -20,5 +21,9 @@ class Lava {
         * of the tiles within grid comes to contain
         * a trympe it'll do a special action. 
         */
+    }
+
+    copy() {
+        return new Lava(this.x, this.y);
     }
 }

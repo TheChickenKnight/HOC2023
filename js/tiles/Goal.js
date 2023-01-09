@@ -10,6 +10,7 @@ class Goal {
         };
         this.inhab = null;
         this.type = "goal";
+        grid[y][x] = this;
     }
 
     interact() {
@@ -20,5 +21,9 @@ class Goal {
         * of the tiles within grid comes to contain
         * a trympe it'll do a special action. 
         */
+    }
+
+    copy() {
+        return new Goal(this.x, this.y);
     }
 }

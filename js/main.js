@@ -1,20 +1,10 @@
-//I'll put the actual phases in this file instead of in field.js in due time
-//For now, I'll put a version of main.js i have from my repo diep.io (it'll not work at all):
-
-
 var Neat = neataptic.Neat;
 var Methods = neataptic.Methods;
 var Config  = neataptic.Config;
 var Architect = neataptic.Architect;
 
-var WIDTH;
-var HEIGHT;
-var FOOD_AMOUNT      = Math.round(WIDTH * HEIGHT * 4e-4);
-
-// GA settings
-var PLAYER_AMOUNT     = 100;
 var ITERATIONS        = 300;
-var START_HIDDEN_SIZE = 1;
+var START_HIDDEN_SIZE = 4;
 var MUTATION_RATE     = 1000000;
 var ELITISM_PERCENT   = 0.1;
 
@@ -23,8 +13,8 @@ Config.warnings = false;
 
 function initNeat() {
     neat = new Neat(
-        12,
-        8,
+        14,
+        4,
         null,
         {
             mutation: [
@@ -42,13 +32,13 @@ function initNeat() {
               Methods.Mutation.ADD_BACK_CONN,
               Methods.Mutation.SUB_BACK_CONN
             ],
-            popsize: PLAYER_AMOUNT,
+            popsize: POP_SIZE,
             mutationRate: MUTATION_RATE,
-            elitism: Math.round(ELITISM_PERCENT * PLAYER_AMOUNT),
+            elitism: Math.round(ELITISM_PERCENT * POP_SIZE),
             network: new Architect.Random(
-              12,
+              14,
               START_HIDDEN_SIZE,
-              8
+              4
             )
           },
     );
@@ -56,12 +46,11 @@ function initNeat() {
 
 function startEval() {
 
-  tringles = [];
+  trimps = [];
   for (var genome in neat.population) {
     genome = neat.population[genome];
-    new Tringle(genome);
+    trimps.push(new Trympe(trimps.length % DIM.W, Math.floor(trimps.length / DIM.W), genome, [random(0, 255), random(0, 255), (random(0, 255))]));
   }
-  tringles[0].graph(1000, 1000);
 }
 
 function endEval() {

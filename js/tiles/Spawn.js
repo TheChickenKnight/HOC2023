@@ -11,6 +11,7 @@ class Spawn {
         };
         this.inhab = null;
         this.type = "spawn";
+        grid[y][x] = this;
     }
 
     interact() {
@@ -21,5 +22,9 @@ class Spawn {
         * of the tiles within grid comes to contain
         * a trympe it'll do a special action. 
         */
+    }
+
+    copy() {
+        return new Spawn(this.x, this.y);
     }
 }

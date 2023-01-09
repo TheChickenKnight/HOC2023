@@ -6,6 +6,7 @@ class Tile {
         };
         this.inhab = null;
         this.type = "tile";
+        grid[y][x] = this;
     }
 
     interact() {
@@ -16,5 +17,9 @@ class Tile {
         * of the tiles within grid comes to contain
         * a trympe it'll do a special action. 
         */
+    }
+
+    copy() {
+        return new Tile(this.x, this.y);
     }
 }
